@@ -1,0 +1,1 @@
+This is a toy project from https://theodinproject.com creating simple web page to understand the basics of NodeJS.
