@@ -1,0 +1,15 @@
+{
+  "name": "basic-informational-site",
+  "version": "1.0.0",
+  "description": "This is a toy project from https://theodinproject.com creating simple web page to understand the basics of NodeJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}

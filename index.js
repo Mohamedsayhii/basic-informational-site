@@ -1,22 +1,21 @@
-const url = require('url');
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const app = express();
 
-const notFound = fs.readFileSync('404.html');
+app.get('/', (req, res) => {
+	res.sendFile('index.html', { root: __dirname });
+});
 
-http.createServer(function (req, res) {
-	const pathname = url.parse(req.url, true).pathname;
-	const filename =
-		pathname === '/' ? './index.html' : '.' + pathname + '.html';
+app.get('/about', (req, res) =>
+	res.sendFile('about.html', { root: __dirname })
+);
+app.get('/contact-me', (req, res) =>
+	res.sendFile('contact-me.html', { root: __dirname })
+);
 
-	fs.readFile(filename, (err) => {
-		if (err) {
-			res.writeHead(404, { 'Content-Type': 'text/html' });
-			return res.end(notFound);
-		}
+app.use((req, res) =>
+	res.status(404).sendFile('404.html', { root: __dirname })
+);
 
-		res.writeHead(200, { 'Content-Type': 'text/html' });
-		res.write(fs.readFileSync(filename));
-		return res.end();
-	});
-}).listen(8080);
+app.listen(3000, () => {
+	console.log('Server is running on port 3000');
+});
