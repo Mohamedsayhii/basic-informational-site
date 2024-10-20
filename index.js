@@ -2,9 +2,6 @@ const url = require('url');
 const http = require('http');
 const fs = require('fs');
 
-const homepage = fs.readFileSync('index.html');
-const about = fs.readFileSync('about.html');
-const contactMe = fs.readFileSync('contact-me.html');
 const notFound = fs.readFileSync('404.html');
 
 http.createServer(function (req, res) {
@@ -12,21 +9,14 @@ http.createServer(function (req, res) {
 	const filename =
 		pathname === '/' ? './index.html' : '.' + pathname + '.html';
 
-	fs.readFile(filename, function (err, data) {
+	fs.readFile(filename, (err) => {
 		if (err) {
 			res.writeHead(404, { 'Content-Type': 'text/html' });
 			return res.end(notFound);
 		}
 
 		res.writeHead(200, { 'Content-Type': 'text/html' });
-		if (pathname === '/') {
-			res.write(homepage);
-		} else if (pathname === '/about') {
-			res.write(about);
-		} else if (pathname === '/contact-me') {
-			res.write(contactMe);
-		}
-
+		res.write(fs.readFileSync(filename));
 		return res.end();
 	});
 }).listen(8080);
