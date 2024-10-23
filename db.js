@@ -4,8 +4,30 @@ const authors = [
 	{ id: 3, name: 'Jason' },
 ];
 
+const books = [
+	{
+		id: 1,
+		name: 'Gulag Archipelago',
+		reserved: false,
+	},
+	{
+		id: 2,
+		name: '48 Laws of Power',
+		reserved: false,
+	},
+	{
+		id: 3,
+		name: 'Brothers Karamazov',
+		reserved: false,
+	},
+];
+
 async function getAuthorById(authorId) {
 	return authors.find((author) => author.id === authorId);
 }
 
-module.exports = { getAuthorById };
+async function getBookById(bookId) {
+	return books.find((book) => book.id == bookId);
+}
+
+module.exports = { getAuthorById, getBookById };
