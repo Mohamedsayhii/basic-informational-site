@@ -2,19 +2,30 @@ const { Router } = require('express');
 
 const indexRouter = Router();
 
+const links = [
+	{ href: '/', text: 'Home' },
+	{ href: 'about', text: 'About' },
+	{ href: 'contact', text: 'Contact' },
+];
+
+const contact = [
+	{ type: 'Phone', text: '+21652444176' },
+	{ type: 'Email', text: 'mohamedsaihii@outlook.fr' },
+];
+
+const users = ['Rose', 'Cake', 'Biff'];
+
 indexRouter.get('/', (req, res) => {
-	res.sendFile('index.html', { root: __dirname });
+	res.render('index', { links: links, users: users });
 });
 
-indexRouter.get('/about', (req, res) =>
-	res.sendFile('about.html', { root: __dirname })
+indexRouter.get('/about', (req, res) => res.render('about', { links: links }));
+
+indexRouter.get('/contact', (req, res) =>
+	res.render('contact', { links: links, contact: contact })
 );
 
-indexRouter.get('/contact-me', (req, res) =>
-	res.sendFile('contact-me.html', { root: __dirname })
-);
-
-indexRouter.post('/contact-me', (req, res) =>
+indexRouter.post('/contact', (req, res) =>
 	res.send('We will get back at you as soon as possible')
 );
 

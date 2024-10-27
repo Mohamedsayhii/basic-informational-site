@@ -1,0 +1,16 @@
+<!-- index.ejs -->
+<html>
+	<head>
+		<title>Contact Us</title>
+		<link rel="stylesheet" href="" />
+	</head>
+	<body>
+		<%- include('navbar', {links: links}) %>
+		<h1>You can reach us at:</h1>
+		<ul>
+			<% contact.forEach((c) => { %>
+			<li><%= c.type %> : <%= c.text %></li>
+			<% }) %>
+		</ul>
+	</body>
+</html>

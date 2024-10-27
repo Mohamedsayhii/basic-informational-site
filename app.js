@@ -12,17 +12,6 @@ app.use(express.static(assetsPath));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const links = [
-	{ href: '/', text: 'Home' },
-	{ href: 'about', text: 'About' },
-];
-
-const users = ['Rose', 'Cake', 'Biff'];
-
-app.get('/', (req, res) => {
-	res.render('index', { links: links, users: users });
-});
-
 app.use('/authors', authorRouter);
 app.use('/books', bookRouter);
 app.use('/', indexRouter);
